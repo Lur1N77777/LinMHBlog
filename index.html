@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Lumina Blog</title>
+    <!-- 引入 Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      // Tailwind CSS 配置文件
+      tailwind.config = {
+        darkMode: 'class', // 启用手动深色模式切换（通过类名控制）
+        theme: {
+          extend: {
+            colors: {
+              // 自定义深色模式下的颜色，模仿 Apple 的深灰色调
+              dark: {
+                bg: '#000000',      // 纯黑背景
+                surface: '#1c1c1e', // 稍微亮一点的表面层颜色
+                border: '#2c2c2e',  // 边框颜色
+              }
+            },
+            fontFamily: {
+              // 优先使用系统默认字体，保证原生体验
+              sans: [
+                '-apple-system',
+                'BlinkMacSystemFont',
+                '"Segoe UI"',
+                'Roboto',
+                '"Helvetica Neue"',
+                'Arial',
+                'sans-serif',
+              ],
+            },
+            // 自定义动画名称
+            animation: {
+              'fade-in': 'fadeIn 0.5s ease-out forwards', // 淡入
+              'slide-up': 'slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards', // 上滑淡入
+              'scale-up': 'scaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards', // 缩放淡入
+              'scale-pulse': 'scalePulse 2s infinite ease-in-out', // 呼吸缩放
+            },
+            // 动画关键帧定义
+            keyframes: {
+              fadeIn: {
+                '0%': { opacity: '0' },
+                '100%': { opacity: '1' },
+              },
+              slideUp: {
+                '0%': { transform: 'translateY(20px)', opacity: '0' },
+                '100%': { transform: 'translateY(0)', opacity: '1' },
+              },
+              scaleUp: {
+                '0%': { transform: 'scale(0.9)', opacity: '0' },
+                '100%': { transform: 'scale(1)', opacity: '1' },
+              },
+              scalePulse: {
+                '0%, 100%': { transform: 'scale(1)' },
+                '50%': { transform: 'scale(1.05)' },
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        /* 字体平滑处理，让文字在 Mac 上更清晰 */
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        background-color: #f5f5f7; /* 默认亮色背景：Apple 浅灰 */
+        transition: background-color 0.3s ease; /* 背景色切换动画 */
+      }
+      
+      /* 深色模式下的 body 背景 */
+      html.dark body {
+        background-color: #000000;
+      }
+
+      /* 隐藏滚动条但保留滚动功能（为了美观） */
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      
+      /* 玻璃拟态效果通用类 */
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.72);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      }
+      /* 深色模式下的玻璃拟态 */
+      html.dark .glass-panel {
+        background: rgba(28, 28, 30, 0.72);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://esm.sh/react@^19.2.4",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.4/",
+    "react/": "https://esm.sh/react@^19.2.4/",
+    "@google/genai": "https://esm.sh/@google/genai@^1.41.0",
+    "lucide-react": "https://esm.sh/lucide-react@^0.563.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body>
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
